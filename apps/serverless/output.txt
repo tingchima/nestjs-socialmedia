@@ -1,1 +1,0 @@
-{"statusCode":200,"body":"The product of 10 and 10 is 100"}
