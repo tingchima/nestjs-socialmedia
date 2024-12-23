@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "google/protobuf/empty.proto";
+
+service UsersService {
+    rpc FindAllUsers(google.protobuf.Empty) returns (Users) {}
+}
+
+message Users {
+    repeated User users = 1;
+}
+
+message User {
+    string id       = 1;
+    string username = 2;
+    string password = 3;
+    int32 age       = 4;
+    bool subscribed = 5;
+}

@@ -1,0 +1,27 @@
+{
+    "name": "nestjs-socialmedia",
+    "version": "1.0.0",
+    "main": "index.js",
+    "engines": {
+        "node": ">=18.0.0 <=20.18.0"
+    },
+    "scripts": {
+        "build": "turbo build",
+        "dev": "turbo dev",
+        "lint": "turbo lint",
+        "format": "turbo run format",
+        "clean": "turbo clean"
+    },
+    "packageManager": "pnpm@9.13.2",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@nestjs/common": "^10.4.8"
+    },
+    "devDependencies": {
+        "swc-loader": "0.2.3",
+        "turbo": "^2.3.0"
+    }
+}

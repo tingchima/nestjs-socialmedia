@@ -1,0 +1,91 @@
+version: "3.6"
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0.28
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./data/mysql:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:7.9.1
+    volumes:
+      - ./config/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./data/elasticsearch:/usr/share/elasticsearch/data/
+    environment:
+      - discovery.type=single-node
+      - http.host=0.0.0.0
+      - transport.host=0.0.0.0
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - cluster.name=elasticsearch
+      - bootstrap.memory_lock=true
+    ports:
+      - 9300:9300
+      - 9200:9200
+    networks:
+      - socialmedia
+
+  logstash:
+    container_name: logstash
+    image: logstash:7.9.1
+    volumes:
+      - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - ./config/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./data/logstash:/usr/share/logstash/data
+    ports:
+      - 5044:5044
+      - 50000:50000/tcp
+      - 50000:50000/udp
+      - 9600:9600
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+    networks:
+      - socialmedia
+
+  kibana:
+    container_name: kibana
+    image: kibana:7.9.1
+    volumes:
+      - ./config/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - ./data/kibana:/usr/share/kibana/data
+    ports:
+      - 5601:5601
+    environment:
+      KIBANA_SYSTEM_PASSWORD: socialmedia
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+    networks:
+      - socialmedia
+
+  localstack:
+    container_name: "localstack"
+    image: localstack/localstack
+    restart: always
+    ports:
+      - "127.0.0.1:4566:4566" # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559" # external services port range
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+networks:
+  socialmedia:
+    driver: bridge

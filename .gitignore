@@ -1,0 +1,13 @@
+# compiled output
+/dist
+/node_modules
+/build
+
+# local data
+data
+
+# turbo
+.turbo
+
+# volume
+volume

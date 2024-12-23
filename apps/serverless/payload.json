@@ -1,0 +1,26 @@
+{
+    "Records": [
+        {
+            "eventID": "7de3041dd709b024af6f29e4fa13d34c",
+            "eventName": "INSERT",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "ap-east-1",
+            "dynamodb": {
+                "channel_id": {
+                    "N": 1
+                },
+                "created_at": {
+                    "S": "2024-12-17T08:48:03.001Z"
+                },
+                "text": {
+                    "S": "This is a bark from the Woofer social network"
+                },
+                "user_id": {
+                    "N": 1
+                }
+            },
+            "eventSourceARN": "arn:aws:dynamodb:ap-east-1:000000000000:table/chats/stream/2024-12-17T08:37:09.077"
+        }
+    ]
+}

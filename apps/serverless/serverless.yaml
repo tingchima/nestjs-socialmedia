@@ -1,0 +1,38 @@
+service: serverless
+
+frameworkVersion: "3"
+
+plugins:
+  - serverless-offline-dynamodb-streams
+  - serverless-offline
+
+useDotenv: true
+
+custom:
+  serverless-offline:
+    host: "0.0.0.0"
+    httpPort: ${env:HTTP_PORT, "3002"}
+    lambdaPort: ${env:LAMBDA_PORT, "4002"}
+  serverless-offline-dynamodb-streams:
+    endpoint: http://0.0.0.0:4566
+    region: ap-east-1
+
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  environment:
+    ENV: ${env:ENV}
+
+functions:
+  consumeChatStreams:
+    handler: src/main.consumeChatStreams
+    events:
+      - stream:
+          enabled: true
+          type: dynamodb
+          #set dynamodb stream arn at here
+          arn: arn:aws:dynamodb:ap-east-1:000000000000:table/chats/stream/2024-12-23T05:46:08.897
+          batchSize: 10
+          startingPosition: TRIM_HORIZON
+

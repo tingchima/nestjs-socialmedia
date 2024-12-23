@@ -1,0 +1,39 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Nest.js",
+    "extends": "./base.json",
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "allowJs": true,
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "types": [
+            "jest",
+            "node"
+        ],
+        "sourceMap": true,
+        "outDir": "dist",
+        "strict": true,
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "baseUrl": "./",
+        "forceConsistentCasingInFileNames": true,
+        "strictPropertyInitialization": false,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
+        "declaration": true,
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "./dist/**/*"
+    ]
+}

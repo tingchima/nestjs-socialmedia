@@ -1,0 +1,16 @@
+{
+    "name": "@repo/typescript-config",
+    "version": "1.0.0",
+    "private": true,
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "type": "module",
+    "files": [
+        "base.json",
+        "nestjs.json"
+    ],
+    "dependencies": {
+        "typescript": "5.6.3"
+    }
+}

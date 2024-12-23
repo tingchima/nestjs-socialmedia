@@ -1,0 +1,41 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "tasks": {
+        "build": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "dist/**"
+            ]
+        },
+        "lint": {
+            "dependsOn": [
+                "^lint"
+            ],
+            "outputs": []
+        },
+        "spell-check": {
+            "inputs": [
+                "**/*.md",
+                "**/*.mdx"
+            ]
+        },
+        "format": {
+            "outputs": []
+        },
+        "dev": {
+            "cache": false,
+            "persistent": true
+        },
+        "clean": {
+            "cache": false,
+            "persistent": true
+        },
+        "migrateup": {
+            "dependsOn": [
+                "^migrate:latest"
+            ]
+        }
+    }
+}

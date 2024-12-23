@@ -1,0 +1,1 @@
+(()=>{var e={handler:async e=>{console.log(e);for(const o of e.Records)console.log("Processing record:",o);return{statusCode:200}}},o=exports;for(var r in e)o[r]=e[r];e.__esModule&&Object.defineProperty(o,"__esModule",{value:!0})})();
