@@ -253,4 +253,6 @@ sls offline
 7. Publish chat failover solution.
 8. Implement dispatcher server between socialmedia-api and chat-ws-gateway server.
 9. Separate redis server to each microservice.
-10. Probably ...
+10. Add unit test.
+11. Modify logger.
+12. Probably ...

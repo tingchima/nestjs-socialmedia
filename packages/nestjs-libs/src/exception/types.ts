@@ -2,17 +2,10 @@ import { HttpException } from "@nestjs/common";
 import { AppException } from "./app.exception";
 
 export type ErrorMessageType = {
-  /**
-   * message to be logged
-   */
   message: string;
-  /**
-   * method or class that accour message
-   */
+
   context?: string;
-  /**
-   * addtional object to log
-   */
+
   obj?: object;
 };
 
